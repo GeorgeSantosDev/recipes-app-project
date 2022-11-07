@@ -1,0 +1,40 @@
+@media ( max-width : 420px ) {
+  .form-search-bar {
+    width: 338px;
+    height: 88px;
+    background: #41197F;
+    border-radius: 10px;
+    align-self: center;
+    margin-bottom: 40px;
+  }
+
+  .search-input {
+    box-sizing: border-box;
+    width: 338px;
+    height: 40px;
+    background: #FFFFFF;
+    border: 1px solid #B1B1B1;
+    border-radius: 5px;
+  }
+
+  .search-radios-inputs-container {
+    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Epilogue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 9px;
+    color: #FFFFFF;
+  }
+
+  .search-btn {
+    width: 208.16px;
+    height: 25px;
+    margin: 15px;
+    align-self: center;
+    background: #FCC436;
+    border-radius: 5px;
+  }
+}
