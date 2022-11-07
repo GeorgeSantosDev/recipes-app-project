@@ -1,0 +1,61 @@
+.container-flex-collumn {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.logo-container {
+  background: #41197F;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-image {
+  width: 200px;
+  height: 200px;
+  align-self: center;
+}
+
+.tomato-image {
+  position: absolute;
+  width: 370px;
+  height: 250px;
+  top: 210px; 
+}
+
+.login-title {
+  position: absolute;
+  align-self: center;
+  top: 420px;
+  font-family: 'Epilogue';
+  font-style: italic;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: 0.165em;
+  text-transform: uppercase;
+  color: #41197F;
+}
+
+.form-container {
+  position: absolute;
+  align-self: center;
+  top: 480px;
+  width: 51%;
+}
+
+.login-btn {
+  width: 30%;
+  align-self: center;
+  margin-top: 15px;
+  background: #FCC436;
+  border-radius: 5px;
+}
+
+.login-input {
+  padding: 10px;
+  margin: 5px;
+  border: 0.5px solid #41197F;
+  border-radius: 5px;
+}

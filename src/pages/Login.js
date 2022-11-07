@@ -1,6 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { setStorage } from '../services/Storage';
+import '../styles/Login.css';
+import logo from '../images/logo.png';
+import tomato from '../images/tomate.png';
 
 const MINIMUM_PASSWORD_LENGTH = 6;
 
@@ -29,36 +32,51 @@ function Login({ history }) {
   || !emailRegex.test(email);
 
   return (
-    <form>
-      <label htmlFor="email">
-        <input
-          type="email"
-          name="email"
-          id="email"
-          data-testid="email-input"
-          value={ email }
-          onChange={ (e) => handleChange(e) }
-        />
-      </label>
-      <label htmlFor="password">
-        <input
-          type="password"
-          name="password"
-          id="password"
-          data-testid="password-input"
-          value={ password }
-          onChange={ (e) => handleChange(e) }
-        />
-      </label>
-      <button
-        type="button"
-        data-testid="login-submit-btn"
-        disabled={ isDisabled }
-        onClick={ handleClick }
-      >
-        Entrar
-      </button>
-    </form>
+    <section className="container-flex-collumn">
+      <div className="logo-container">
+        <img src={ logo } alt="logo" className="logo-image" />
+      </div>
+
+      <img src={ tomato } alt="logo" className="tomato-image" />
+
+      <h1 className="login-title">Login</h1>
+
+      <form className="container-flex-collumn form-container">
+        <label htmlFor="email">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            data-testid="email-input"
+            value={ email }
+            className="login-input"
+            onChange={ (e) => handleChange(e) }
+          />
+        </label>
+        <label htmlFor="password">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            data-testid="password-input"
+            placeholder="Senha"
+            value={ password }
+            className="login-input"
+            onChange={ (e) => handleChange(e) }
+          />
+        </label>
+        <button
+          type="button"
+          data-testid="login-submit-btn"
+          disabled={ isDisabled }
+          onClick={ handleClick }
+          className="login-btn"
+        >
+          Entrar
+        </button>
+      </form>
+    </section>
   );
 }
 
