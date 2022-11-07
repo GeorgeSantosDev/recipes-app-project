@@ -1,0 +1,28 @@
+.start-recipe-btn {
+  bottom: 0;
+  height: 50px;
+  left: 0;
+  position: fixed;
+  width: 100%;
+}
+
+@media ( max-width : 360px ) {
+
+  .carousel {
+    overflow-x: scroll;
+  }
+
+  .carousel-inner {
+    display: flex;
+    width: 100%;
+  }
+
+  .carousel-image {
+    height: 280px;
+    width: 280px;
+  }
+
+  .carousel-item {
+    margin: 20px;
+  }
+}
