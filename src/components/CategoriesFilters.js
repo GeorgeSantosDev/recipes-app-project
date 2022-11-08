@@ -4,6 +4,15 @@ import { fetchMealCategories, fetchDrinkCategories } from '../services/fetchCate
 import { fetchMealByCategory,
   fetchDrinkByCategory } from '../services/fetchRecipesByCategory';
 import recipesContext from '../context/RecipesContext';
+import all from '../images/All.png';
+import beef from '../images/beef.png';
+import chicken from '../images/chicken.png';
+import breakfast from '../images/breakfast.png';
+import dessert from '../images/dessert.png';
+import goat from '../images/goat.png';
+import '../styles/CategoriesFilters.css';
+
+const categoriesIcons = [beef, breakfast, chicken, dessert, goat];
 
 const MAXIMUM_CATEGORIES = 4;
 
@@ -51,26 +60,27 @@ function CategoriesFilters() {
   const getFirstFiveCategories = categories.filter((_, i) => i <= MAXIMUM_CATEGORIES);
 
   return (
-    <section>
+    <section className="categories-container">
       {
         getFirstFiveCategories.map((category, i) => (
-          <button
+          <img
             key={ `category-${i}` }
-            type="button"
+            aria-hidden="true"
             data-testid={ `${category.strCategory}-category-filter` }
             onClick={ () => handleClickFilterByCategory(category.strCategory) }
-          >
-            {category.strCategory}
-          </button>
+            src={ categoriesIcons[i] }
+            alt="category-Icon"
+          />
         ))
       }
-      <button
+      <img
         data-testid="All-category-filter"
+        aria-hidden="true"
         type="button"
         onClick={ handleResetCategory }
-      >
-        All
-      </button>
+        src={ all }
+        alt="category-Icon"
+      />
     </section>
   );
 }
