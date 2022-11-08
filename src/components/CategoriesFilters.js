@@ -67,7 +67,7 @@ function CategoriesFilters() {
   };
 
   const getFirstFiveCategories = categories.filter((_, i) => i <= MAXIMUM_CATEGORIES);
-  console.log(getFirstFiveCategories);
+
   return (
     <section className="categories-container">
       {
