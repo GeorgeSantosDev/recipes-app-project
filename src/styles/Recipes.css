@@ -1,0 +1,12 @@
+@media ( max-width : 420px ) {
+  .recipes-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+
+  .link-to-details {
+    text-decoration: none;
+  }
+}

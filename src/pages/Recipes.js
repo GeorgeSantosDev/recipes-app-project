@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import RecipeCard from '../components/RecipeCard';
 import Footer from '../components/Footer';
 import CategoriesFilters from '../components/CategoriesFilters';
+import '../styles/Recipes.css';
 
 const MAXIMUM_CARD = 11;
 
@@ -43,19 +44,25 @@ function Recipes() {
     <section>
       <Header />
       <CategoriesFilters />
-      {
-        getFirstTwelveRecipes.map((recipe, i) => (
-          <Link
-            to={ `${pathname}/${pathname === '/meals' ? recipe.idMeal : recipe.idDrink}` }
-            key={ `Render-recipe-${i}` }
-          >
-            <RecipeCard
-              recipe={ recipe }
-              index={ i }
-            />
-          </Link>
-        ))
-      }
+
+      <section className="recipes-container">
+        {
+          getFirstTwelveRecipes.map((recipe, i) => (
+            <Link
+              to={ `${pathname}/${pathname === '/meals'
+                ? recipe.idMeal : recipe.idDrink}` }
+              key={ `Render-recipe-${i}` }
+              className="link-to-details"
+            >
+              <RecipeCard
+                recipe={ recipe }
+                index={ i }
+              />
+            </Link>
+          ))
+        }
+      </section>
+
       <Footer />
     </section>
   );
