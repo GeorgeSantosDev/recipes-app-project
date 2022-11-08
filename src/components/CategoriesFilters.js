@@ -10,9 +10,18 @@ import chicken from '../images/chicken.png';
 import breakfast from '../images/breakfast.png';
 import dessert from '../images/dessert.png';
 import goat from '../images/goat.png';
+import alldrinks from '../images/alldrinks.png';
+import cocktail from '../images/cocktail.png';
+import cocoa from '../images/cocoa.png';
+import drinksIcon from '../images/drinksIcon.png';
+import shake from '../images/shake.png';
+import other from '../images/other.png';
 import '../styles/CategoriesFilters.css';
 
-const categoriesIcons = [beef, breakfast, chicken, dessert, goat];
+const categoriesIcons = {
+  '/meals': [beef, breakfast, chicken, dessert, goat, all],
+  '/drinks': [drinksIcon, cocktail, shake, other, cocoa, alldrinks],
+};
 
 const MAXIMUM_CATEGORIES = 4;
 
@@ -58,7 +67,7 @@ function CategoriesFilters() {
   };
 
   const getFirstFiveCategories = categories.filter((_, i) => i <= MAXIMUM_CATEGORIES);
-
+  console.log(getFirstFiveCategories);
   return (
     <section className="categories-container">
       {
@@ -68,7 +77,7 @@ function CategoriesFilters() {
             aria-hidden="true"
             data-testid={ `${category.strCategory}-category-filter` }
             onClick={ () => handleClickFilterByCategory(category.strCategory) }
-            src={ categoriesIcons[i] }
+            src={ categoriesIcons[pathname][i] }
             alt="category-Icon"
           />
         ))
@@ -78,7 +87,7 @@ function CategoriesFilters() {
         aria-hidden="true"
         type="button"
         onClick={ handleResetCategory }
-        src={ all }
+        src={ categoriesIcons[pathname][5] }
         alt="category-Icon"
       />
     </section>
