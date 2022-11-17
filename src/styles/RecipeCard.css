@@ -1,6 +1,6 @@
 @media ( max-width : 420px ) {
   .recipe-image {
-    width: 180px;
+    width: 170px;
     height: 180px;
     border-radius: 5px 5px 0px 0px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
