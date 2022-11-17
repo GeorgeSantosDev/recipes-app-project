@@ -1,0 +1,11 @@
+@media ( max-width : 420px ) {
+  .favorite-btn {
+    position: absolute;
+    left: 85.28%;
+    right: 8.36%;
+    top: 1.32%;
+    bottom: 97.27%;
+    width: 28px;
+    margin-left: 10px;
+  }
+}

@@ -3,8 +3,9 @@ import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { setStorage, getStorage } from '../services/Storage';
 import recipesContext from '../context/RecipesContext';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import YHeart from '../images/YHeart.png';
+import YEmptyHeart from '../images/YEmptyHeart.png';
+import '../styles/FavoriteBtn.css';
 
 function FavoriteBtn({ recipe, index }) {
   const { pathname } = useLocation();
@@ -72,18 +73,20 @@ function FavoriteBtn({ recipe, index }) {
         isAtFavoriteRecipesPage ? (
           <img
             aria-hidden="true"
-            src={ blackHeartIcon }
+            src={ YHeart }
             alt="blackHeartIcon"
             data-testid={ `${index}-horizontal-favorite-btn` }
             onClick={ removeRecipeToFavorite }
+            className="favorite-btn"
           />
         ) : (
           <img
             aria-hidden="true"
-            src={ isRecipeFavorite ? blackHeartIcon : whiteHeartIcon }
+            src={ isRecipeFavorite ? YHeart : YEmptyHeart }
             alt={ isRecipeFavorite ? 'blackHeartIcon' : 'whiteHeartIcon' }
             data-testid="favorite-btn"
             onClick={ handleClickFavoriteBtn }
+            className="favorite-btn"
           />
         )
       }
