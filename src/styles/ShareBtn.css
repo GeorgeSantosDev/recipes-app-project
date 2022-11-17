@@ -1,0 +1,12 @@
+@media ( max-width : 420px ) {
+  .share-btn {
+    position: absolute;
+    left: 76.67%;
+    right: 17.77%;
+    top: 1.39%;
+    bottom: 97.22%;
+    width: 28px;
+
+    color: #FCC436; ;
+  }
+}

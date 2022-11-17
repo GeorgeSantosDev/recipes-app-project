@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
-import shareIcon from '../images/shareIcon.svg';
+import shareIcon from '../images/shareIcon.png';
+import '../styles/ShareBtn.css';
 
 function ShareBtn({ type, id, datatest }) {
   const [isCopy, setIsCopy] = useState(false);
@@ -22,6 +23,7 @@ function ShareBtn({ type, id, datatest }) {
         src={ shareIcon }
         alt="shareIcon"
         onClick={ handleClickShareBtn }
+        className="share-btn"
       />
     </div>
   );
