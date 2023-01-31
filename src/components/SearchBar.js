@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useLocation, useHistory} from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import recipesContext from '../context/RecipesContext';
 import { fetchMealsByIngredient,
   fetchMealsByName,

@@ -48,7 +48,7 @@ function Profile() {
       </div>
       <hr className="line" />
 
-      <div className="icon-route-container" >
+      <div className="icon-route-container">
         <img
           aria-hidden="true"
           data-testid="profile-logout-btn"
