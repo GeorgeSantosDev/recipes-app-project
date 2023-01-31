@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ShareBtn from './ShareBtn';
+import '../styles/DoneRecipesCard.css';
 
 function DoneRecipeCard({ recipe, index }) {
   const history = useHistory();
@@ -11,48 +12,51 @@ function DoneRecipeCard({ recipe, index }) {
   };
 
   return (
-    <div>
+    <div className="done-recipes-card-container">
       <input
         type="image"
         src={ recipe.image }
         alt={ recipe.name }
+        className="done-recipe-image"
         data-testid={ `${index}-horizontal-image` }
         onClick={ handleClick }
       />
 
-      <p data-testid={ `${index}-horizontal-top-text` }>
-        { recipe.type === 'meal' ? `${recipe.nationality} - ${recipe.category}`
-          : `${recipe.alcoholicOrNot} - ${recipe.category}` }
-      </p>
+      <div>
 
-      <Link
-        to={ `/${recipe.type}s/${recipe.id}` }
-        data-testid={ `${index}-horizontal-name` }
-      >
-        { recipe.name }
-      </Link>
+        <p data-testid={ `${index}-horizontal-top-text` }>
+          { recipe.type === 'meal' ? `${recipe.nationality} - ${recipe.category}`
+            : `${recipe.alcoholicOrNot} - ${recipe.category}` }
+        </p>
 
-      <p data-testid={ `${index}-horizontal-done-date` }>
-        { recipe.doneDate }
-      </p>
+        <Link
+          to={ `/${recipe.type}s/${recipe.id}` }
+          data-testid={ `${index}-horizontal-name` }
+        >
+          { recipe.name }
+        </Link>
 
-      <ShareBtn
-        type={ `${recipe.type}s` }
-        id={ recipe.id }
-        datatest={ `${index}-horizontal-share-btn` }
-      />
+        <p data-testid={ `${index}-horizontal-done-date` }>
+          { recipe.doneDate }
+        </p>
 
-      {
-        recipe.tags.filter((tag, i) => i < 2 && (
-          <p
-            key={ tag }
-            data-testid={ `${i}-${tag}-horizontal-tag` }
-          >
-            { tag }
-          </p>
-        ))
-      }
+        <ShareBtn
+          type={ `${recipe.type}s` }
+          id={ recipe.id }
+          datatest={ `${index}-horizontal-share-btn` }
+        />
 
+        {
+          recipe.tags.filter((tag, i) => i < 2 && (
+            <p
+              key={ tag }
+              data-testid={ `${i}-${tag}-horizontal-tag` }
+            >
+              { tag }
+            </p>
+          ))
+        }
+      </div>
     </div>
   );
 }
