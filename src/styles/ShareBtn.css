@@ -10,7 +10,7 @@
     color: #FCC436; ;
   }
 
-  .share-btn-dr {
+  .share-btn-fav-done {
     width: 28px;
     height: 28px;
   }
@@ -18,5 +18,6 @@
   .share-btn-container {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 5px;
   }
 }

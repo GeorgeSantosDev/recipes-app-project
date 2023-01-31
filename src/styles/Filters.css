@@ -1,0 +1,24 @@
+@media ( max-width : 420px ) {
+  .filters-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+
+  .filter-btn {
+    width: 50%;
+    padding: 8px;
+    align-self: center;
+    margin-top: 15px;
+    background: #FCC436;
+    border-radius: 5px;
+    font-family: 'Epilogue';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+}

@@ -4,6 +4,7 @@ import { fetchMealsDetails, fetchDrinksDetails } from '../services/fetchDetails'
 import DetailsCard from '../components/DetailsCard';
 import { getStorage, setStorage } from '../services/Storage';
 import recipesContext from '../context/RecipesContext';
+import '../styles/RecipeInProgress.css';
 
 function RecipeInProgress() {
   const { pathname } = useLocation();
@@ -91,6 +92,7 @@ function RecipeInProgress() {
         data-testid="finish-recipe-btn"
         disabled={ isDisabled }
         onClick={ handleClickFinishRecipe }
+        className="finish-btn"
       >
         Finish Recipe
       </button>

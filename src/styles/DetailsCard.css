@@ -57,4 +57,8 @@
     border-radius: 5.35144px;
     padding: 18px;
   }
+
+  .ingredients-container {
+    margin: 18px;
+  }
 }

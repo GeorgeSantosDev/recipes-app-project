@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 import PropTypes from 'prop-types';
+import '../styles/RecommendationCard.css';
 
 function RecommendationCard({ index, sugestion }) {
   const { pathname } = useLocation();
@@ -18,7 +19,10 @@ function RecommendationCard({ index, sugestion }) {
           : sugestion.strMeal }
       />
       <Carousel.Caption>
-        <p data-testid={ `${index}-recommendation-title` }>
+        <p
+          data-testid={ `${index}-recommendation-title` }
+          className="recommend-recipe-name"
+        >
           { pathname.includes('meals') ? sugestion.strDrink
             : sugestion.strMeal }
         </p>

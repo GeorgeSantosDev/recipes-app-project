@@ -8,7 +8,7 @@ import '../styles/ShareBtn.css';
 function ShareBtn({ type, id, datatest }) {
   const [isCopy, setIsCopy] = useState(false);
   const { pathname } = useLocation();
-  console.log(pathname);
+  const checkBtnClass = pathname.includes('drinks') || pathname.includes('meals');
 
   const handleClickShareBtn = () => {
     copy(`http://localhost:3000/${type}/${id}`);
@@ -23,7 +23,7 @@ function ShareBtn({ type, id, datatest }) {
         src={ shareIcon }
         alt="shareIcon"
         onClick={ handleClickShareBtn }
-        className={ pathname.includes('done-recipes') ? 'share-btn-dr' : 'share-btn' }
+        className={ checkBtnClass ? 'share-btn' : 'share-btn-fav-done' }
       />
 
       {

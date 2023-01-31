@@ -1,19 +1,23 @@
 @media ( max-width : 420px ) {
-  .done-recipes-card-container {
+  .favorite-recipes-card-container {
     display: flex;
-    text-align: center;
     font-family: 'Epilogue';
     font-style: normal;
     font-weight: 400;
     border: 1px solid black;
     margin: 25px;
-    background: #e0e0df;;
+    padding: 10px;
+    background: #e0e0df;
   }
 
-  .done-recipe-image {
-    padding: 10px;
-    width: 40%;
+  .favorite-recipe-image {
+    width: 150px;
     height: 150px;
+    padding: 10px;
     filter: brightness(0.6);
+  }
+
+  .favorite-text-container {
+    width: 100%;
   }
 }

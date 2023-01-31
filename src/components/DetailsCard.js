@@ -55,34 +55,36 @@ function DetailsCard({ recipe }) {
 
       <h2 className="ingredient-detail-title">Ingredients</h2>
 
-      {
-        isAtInProgressPage ? (
-          amountOfIngredients.map((ingredient, i) => (
-            <CheckboxInput
-              key={ `ing-${i}` }
-              ingredient={ ingredient }
-              index={ i }
-              amountOfMeasure={ amountOfMeasure }
-            />
-          ))
-        ) : (
-          <ul className="ingredient-list-container-detail">
-            {
-              amountOfIngredients.map((ingredient, i) => (
-                <li
-                  key={ `ing-${i}` }
-                  data-testid={ `${i}-ingredient-name-and-measure` }
-                  className="item-list-detail"
-                >
-                  {ingredient
-                  && `${ingredient[1]}${amountOfMeasure[i]
-                    ? `: ${amountOfMeasure[i][1]}` : ''}`}
-                </li>
-              ))
-            }
-          </ul>
-        )
-      }
+      <div className="ingredients-container">
+        {
+          isAtInProgressPage ? (
+            amountOfIngredients.map((ingredient, i) => (
+              <CheckboxInput
+                key={ `ing-${i}` }
+                ingredient={ ingredient }
+                index={ i }
+                amountOfMeasure={ amountOfMeasure }
+              />
+            ))
+          ) : (
+            <ul className="ingredient-list-container-detail">
+              {
+                amountOfIngredients.map((ingredient, i) => (
+                  <li
+                    key={ `ing-${i}` }
+                    data-testid={ `${i}-ingredient-name-and-measure` }
+                    className="item-list-detail"
+                  >
+                    {ingredient
+                    && `${ingredient[1]}${amountOfMeasure[i]
+                      ? `: ${amountOfMeasure[i][1]}` : ''}`}
+                  </li>
+                ))
+              }
+            </ul>
+          )
+        }
+      </div>
 
       <h2 className="ingredient-detail-title">Instructions</h2>
 

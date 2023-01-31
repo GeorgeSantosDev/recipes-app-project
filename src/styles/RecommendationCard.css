@@ -1,0 +1,5 @@
+@media ( max-width : 420px ) {
+  .recommend-recipe-name {
+    margin-bottom: 50px;
+  }
+}

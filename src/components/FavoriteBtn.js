@@ -11,6 +11,8 @@ function FavoriteBtn({ recipe, index }) {
   const { pathname } = useLocation();
   const { favoriteRecipes, setFavoriteRecipes } = useContext(recipesContext);
 
+  const checkBtnClass = pathname.includes('drinks') || pathname.includes('meals');
+  console.log(checkBtnClass);
   useEffect(() => {
     const favorite = getStorage('favoriteRecipes');
     setFavoriteRecipes(!favorite ? [] : favorite);
@@ -77,7 +79,7 @@ function FavoriteBtn({ recipe, index }) {
             alt="blackHeartIcon"
             data-testid={ `${index}-horizontal-favorite-btn` }
             onClick={ removeRecipeToFavorite }
-            className="favorite-btn"
+            className={ checkBtnClass ? 'favorite-btn' : 'favorite-btn-fav-done' }
           />
         ) : (
           <img
@@ -86,7 +88,7 @@ function FavoriteBtn({ recipe, index }) {
             alt={ isRecipeFavorite ? 'blackHeartIcon' : 'whiteHeartIcon' }
             data-testid="favorite-btn"
             onClick={ handleClickFavoriteBtn }
-            className="favorite-btn"
+            className={ checkBtnClass ? 'favorite-btn' : 'favorite-btn-fav-done' }
           />
         )
       }

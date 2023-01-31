@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import recipesContext from '../context/RecipesContext';
+import '../styles/Filters.css';
 
 function Filters() {
   const { setFilter } = useContext(recipesContext);
@@ -9,12 +10,13 @@ function Filters() {
   };
 
   return (
-    <section>
+    <section className="filters-container">
       <button
         type="button"
         data-testid="filter-by-all-btn"
         value="all"
         onClick={ handleClick }
+        className="filter-btn"
       >
         All
       </button>
@@ -23,6 +25,7 @@ function Filters() {
         data-testid="filter-by-meal-btn"
         value="meal"
         onClick={ handleClick }
+        className="filter-btn"
       >
         Meals
       </button>
@@ -31,6 +34,7 @@ function Filters() {
         data-testid="filter-by-drink-btn"
         value="drink"
         onClick={ handleClick }
+        className="filter-btn"
       >
         Drinks
       </button>

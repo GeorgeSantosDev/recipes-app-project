@@ -8,4 +8,10 @@
     width: 28px;
     margin-left: 10px;
   }
+
+  .favorite-btn-fav-done {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 5px;
+  }
 }
