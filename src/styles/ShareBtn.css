@@ -9,4 +9,14 @@
 
     color: #FCC436; ;
   }
+
+  .share-btn-dr {
+    width: 28px;
+    height: 28px;
+  }
+
+  .share-btn-container {
+    display: flex;
+    justify-content: space-between;
+  }
 }
