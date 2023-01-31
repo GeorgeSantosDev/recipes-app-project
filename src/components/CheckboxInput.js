@@ -21,11 +21,8 @@ function CheckboxInput({ ingredient, index, amountOfMeasure }) {
         && getInProgressRecipes[urlSplit[1]][urlSplit[2]]) {
       const alreadyUsed = getInProgressRecipes[urlSplit[1]][urlSplit[2]]
         .some((ing) => ing === ingredient[1]);
-      console.log(getInProgressRecipes[urlSplit[1]][urlSplit[2]]);
-      console.log(alreadyUsed);
       setIsChecked(alreadyUsed);
     } else {
-      console.log('entrei aqui');
       setIsChecked(false);
     }
   }, []);
@@ -68,7 +65,7 @@ function CheckboxInput({ ingredient, index, amountOfMeasure }) {
         data-testid={ `${index}-ingredient-step` }
         style={ { textDecoration: checkIngredient } }
       >
-        {`${ingredient[1]}: ${amountOfMeasure[index][1]}`}
+        {`${ingredient[1]} ${amountOfMeasure[index] ? amountOfMeasure[index][1] : ''}`}
         <input
           type="checkbox"
           id={ `ing-${index}` }
