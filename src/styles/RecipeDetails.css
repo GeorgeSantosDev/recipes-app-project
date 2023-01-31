@@ -4,27 +4,30 @@
     height: 50px;
     left: 0;
     position: fixed;
-    width: 100%;
+    width: 99%;
+    background: #FCC436;
+    border-radius: 5px;
   }
   
-  @media ( max-width : 360px ) {
-  
-    .carousel {
-      overflow-x: scroll;
-    }
-  
-    .carousel-inner {
-      display: flex;
-      width: 100%;
-    }
-  
-    .carousel-image {
-      height: 280px;
-      width: 280px;
-    }
-  
-    .carousel-item {
-      margin: 20px;
-    }
+  .carousel {
+    overflow-x: scroll;
+  }
+
+  .carousel-inner {
+    display: flex;
+    width: 100%;
+  }
+
+  .carousel-image {
+    height: 280px;
+    width: 280px;
+  }
+
+  .carousel-item {
+    margin: 20px;
+  }
+
+  .carousel-indicators, .carousel-control-next, .carousel-control-prev {
+    display: none;
   }
 }
