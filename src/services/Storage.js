@@ -4,5 +4,5 @@ export const setStorage = (key, value) => {
 
 export const getStorage = (key) => {
   const response = JSON.parse(localStorage.getItem(key));
-  return response;
+  return response || [];
 };

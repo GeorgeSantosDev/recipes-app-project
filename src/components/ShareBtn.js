@@ -1,42 +1,31 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
-import shareIcon from '../images/shareIcon.png';
-import '../styles/ShareBtn.css';
+import shareIcon from '../images/shareIcon.svg';
 
-function ShareBtn({ type, id, datatest }) {
-  const [isCopy, setIsCopy] = useState(false);
+function ShareBtn() {
   const { pathname } = useLocation();
-  const checkBtnClass = pathname.includes('drinks') || pathname.includes('meals');
+  const [isCopy, setIsCopy] = useState(false);
 
   const handleClickShareBtn = () => {
-    copy(`http://localhost:3000/${type}/${id}`);
+    copy(`http://localhost:3000${pathname}`);
     setIsCopy(true);
   };
 
   return (
-    <div className="share-btn-container">
+    <div>
+      {
+        isCopy && <p>Link copied!</p>
+      }
       <img
         aria-hidden="true"
-        data-testid={ datatest }
+        data-testid="share-btn"
         src={ shareIcon }
         alt="shareIcon"
         onClick={ handleClickShareBtn }
-        className={ checkBtnClass ? 'share-btn' : 'share-btn-fav-done' }
       />
-
-      {
-        isCopy && <span>Link copied!</span>
-      }
     </div>
   );
 }
-
-ShareBtn.propTypes = {
-  type: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  datatest: PropTypes.string.isRequired,
-};
 
 export default ShareBtn;

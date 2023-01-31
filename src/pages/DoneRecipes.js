@@ -1,47 +1,55 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { getStorage } from '../services/Storage';
-import recipesContext from '../context/RecipesContext';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import Filters from '../components/Filters';
-import DoneRecipeCard from '../components/DoneRecipeCard';
+import { getStorage } from '../services/Storage';
+import DoneRecipesInfo from '../components/DoneRecipesInfo';
 
-function DoneRecipes() {
-  const [doneRecipes, setDoneRecipes] = useState([]);
-  const { filter } = useContext(recipesContext);
+function DoneRecipes({ location: { pathname } }) {
+  const [filter, setFilter] = useState('all');
 
-  const getDoneRecipes = getStorage('doneRecipes');
+  const onClickChange = (event) => {
+    setFilter(event.target.value);
+  };
 
-  useEffect(() => {
-    if (getDoneRecipes) {
-      setDoneRecipes(getDoneRecipes);
-    }
-  }, []);
+  const doneRecipes = getStorage('doneRecipes');
 
-  useEffect(() => {
-    if (getDoneRecipes) {
-      const filters = {
-        all: getDoneRecipes,
-        meal: getDoneRecipes.filter((recipe) => recipe.type === 'meal'),
-        drink: getDoneRecipes.filter((recipe) => recipe.type === 'drink'),
-      };
-      setDoneRecipes(filters[filter]);
-    }
-  }, [filter]);
-
-  console.log(doneRecipes);
+  const filterRecipes = doneRecipes
+    .filter(({ type }) => filter === 'all' || type === filter);
 
   return (
     <div>
-      <Header />
-      <Filters />
-
-      {
-        doneRecipes.map((recipe, i) => (
-          <DoneRecipeCard key={ `${recipe.name}-${i}` } recipe={ recipe } index={ i } />
-        ))
-      }
+      <Header page={ pathname } search={ false } />
+      <button
+        type="button"
+        data-testid="filter-by-all-btn"
+        value="all"
+        onClick={ onClickChange }
+      >
+        All
+      </button>
+      <button
+        type="button"
+        data-testid="filter-by-meal-btn"
+        value="meal"
+        onClick={ onClickChange }
+      >
+        Meals
+      </button>
+      <button
+        type="button"
+        data-testid="filter-by-drink-btn"
+        value="drink"
+        onClick={ onClickChange }
+      >
+        Drinks
+      </button>
+      <DoneRecipesInfo doneRecipes={ filterRecipes } />
     </div>
   );
 }
-
+DoneRecipes.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
+};
 export default DoneRecipes;

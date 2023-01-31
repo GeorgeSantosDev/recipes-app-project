@@ -1,45 +1,70 @@
 import React, { useEffect, useContext } from 'react';
-import { getStorage } from '../services/Storage';
-import recipesContext from '../context/RecipesContext';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import Filters from '../components/Filters';
-import FavoriteRecipeCard from '../components/FavoriteRecipesCard';
+import { getStorage } from '../services/Storage';
+import FavoriteRecipesInfo from '../components/FavoriteRecipesInfo';
+import recipesContext from '../context/RecipesContext';
 
-function FavoriteRecipes() {
-  const { favoriteRecipes, setFavoriteRecipes, filter } = useContext(recipesContext);
+function FavoriteRecipes({ location: { pathname } }) {
+  const { favoriteRecipes, setFavoriteRecipes } = useContext(recipesContext);
+  // const [filter, setFilter] = useState('all');
 
-  const getFavoriteRecipes = getStorage('favoriteRecipes');
+  // const favoriteRecipess = getStorage('favoriteRecipes');
 
   useEffect(() => {
-    if (getFavoriteRecipes) {
-      setFavoriteRecipes(getFavoriteRecipes);
-    }
+    console.log(getStorage('favoriteRecipes'));
+    setFavoriteRecipes(getStorage('favoriteRecipes'));
   }, []);
+  // const filterRecipes = favoriteRecipes
+  //   .filter(({ type }) => filter === 'all' || type === filter);
 
-  useEffect(() => {
-    if (getFavoriteRecipes) {
-      const filters = {
-        all: getFavoriteRecipes,
-        meal: getFavoriteRecipes.filter((recipe) => recipe.type === 'meal'),
-        drink: getFavoriteRecipes.filter((recipe) => recipe.type === 'drink'),
-      };
-      setFavoriteRecipes(filters[filter]);
-    }
-  }, [filter]);
-
+  const onClickChange = (event) => {
+    setFilter(event.target.value);
+  };
   return (
-    <div>
-      <Header />
-      <Filters />
+    <main>
+      <div>
+        <Header page={ pathname } search={ false } />
+        <button
+          type="button"
+          data-testid="filter-by-all-btn"
+          value="all"
+          onClick={ onClickChange }
+        >
+          All
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-meal-btn"
+          value="meal"
+          onClick={ onClickChange }
+        >
+          Meals
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-drink-btn"
+          value="drink"
+          onClick={ onClickChange }
+        >
+          Drinks
+        </button>
+      </div>
+      <div>
+        {
+          favoriteRecipes.map((recipe, i) => (
+            <FavoriteRecipesInfo key={ i } favoriteRecipes={ recipe } index={ i } />
+          ))
+        }
+      </div>
 
-      {
-        favoriteRecipes.map((recipe, i) => (
-          <FavoriteRecipeCard key={ i } recipe={ recipe } index={ i } />
-        ))
-      }
+    </main>
 
-    </div>
   );
 }
-
+FavoriteRecipes.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
+};
 export default FavoriteRecipes;

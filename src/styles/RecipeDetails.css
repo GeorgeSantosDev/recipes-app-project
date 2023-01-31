@@ -1,14 +1,13 @@
-@media ( max-width : 420px ) {
-  .start-recipe-btn {
-    bottom: 0;
-    height: 50px;
-    left: 0;
-    position: fixed;
-    width: 99%;
-    background: #FCC436;
-    border-radius: 5px;
-  }
-  
+.start-recipe-btn {
+  bottom: 0;
+  height: 50px;
+  left: 0;
+  position: fixed;
+  width: 100%;
+}
+
+@media ( max-width : 360px ) {
+
   .carousel {
     overflow-x: scroll;
   }
@@ -25,9 +24,5 @@
 
   .carousel-item {
     margin: 20px;
-  }
-
-  .carousel-indicators, .carousel-control-next, .carousel-control-prev {
-    display: none;
   }
 }

@@ -1,71 +1,85 @@
 import React, { useContext, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
-import { fetchDrinks, fetchMeals } from '../services/fetchRecipes';
-import recipesContext from '../context/RecipesContext';
-import Header from '../components/Header';
-import RecipeCard from '../components/RecipeCard';
+import PropTypes from 'prop-types';
+import { Link, useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
-import CategoriesFilters from '../components/CategoriesFilters';
-import '../styles/Recipes.css';
+import Header from '../components/Header';
+import Card from '../components/Card';
+import recipesContext from '../context/RecipesContext';
+import fetchMeals from '../services/fetchMeals';
+import fetchDrinks from '../services/fetchDrinks';
+import CategoriesFilters from '../components/CategoriesFilter';
 
 const MAXIMUM_CARD = 11;
 
 function Recipes() {
-  const { recipesToRender,
-    setRecipesToRender,
-    setDrinksRecipes,
-    setMealsRecipes } = useContext(recipesContext);
-
   const { pathname } = useLocation();
+  const {
+    recipesToRender,
+    setRecipesToRender,
+    setDrinks,
+    setMeals,
+  } = useContext(recipesContext);
 
-  const waysToGetRecipe = {
-    '/meals': fetchMeals,
-    '/drinks': fetchDrinks,
-  };
-
-  const waysToSaveAtGlobalStore = {
-    '/meals': setMealsRecipes,
-    '/drinks': setDrinksRecipes,
-  };
-
-  const getRecipes = async () => {
-    const recipes = await waysToGetRecipe[pathname]();
-    setRecipesToRender(!recipes ? [] : recipes);
-    waysToSaveAtGlobalStore[pathname](!recipes ? [] : recipes);
+  const requisitions = async () => {
+    const meals = await fetchMeals();
+    const drinks = await fetchDrinks();
+    if (pathname === '/meals') {
+      setRecipesToRender(meals);
+    } else {
+      setRecipesToRender(drinks);
+    }
+    setDrinks(drinks);
+    setMeals(meals);
   };
 
   useEffect(() => {
-    getRecipes();
-  }, []);
-
-  const getFirstTwelveRecipes = recipesToRender.filter((_, i) => i <= MAXIMUM_CARD);
+    requisitions();
+  }, [pathname]);
 
   return (
-    <section>
-      <Header />
+    <div>
+      <Header page={ pathname } search />
       <CategoriesFilters />
-
-      <section className="recipes-container">
-        {
-          getFirstTwelveRecipes.map((recipe, i) => (
-            <Link
-              to={ `${pathname}/${pathname === '/meals'
-                ? recipe.idMeal : recipe.idDrink}` }
-              key={ `Render-recipe-${i}` }
-              className="link-to-details"
-            >
-              <RecipeCard
-                recipe={ recipe }
-                index={ i }
-              />
-            </Link>
-          ))
-        }
-      </section>
-
+      {
+        recipesToRender.filter((_recipe, i) => i <= MAXIMUM_CARD)
+          .map((recipe, i) => {
+            if (pathname === '/meals') {
+              return (
+                <Link
+                  key={ `${i}-${recipe.strMeal}` }
+                  to={ `/meals/${recipe.idMeal}` }
+                >
+                  <Card
+                    image={ recipe.strMealThumb }
+                    name={ recipe.strMeal }
+                    index={ i }
+                  />
+                </Link>
+              );
+            }
+            return (
+              <Link
+                key={ `${i}-${recipe.strDrink}` }
+                to={ `/drinks/${recipe.idDrink}` }
+              >
+                <Card
+                  image={ recipe.strDrinkThumb }
+                  name={ recipe.strDrink }
+                  index={ i }
+                />
+              </Link>
+            );
+          })
+      }
       <Footer />
-    </section>
+    </div>
   );
 }
+
+Recipes.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default Recipes;
