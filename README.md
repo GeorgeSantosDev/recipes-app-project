@@ -17,7 +17,7 @@
 </p>
 
 <p>
-    The propose of the project is to be a mobile application, so the stylization was developed to screens of max width 420px.   
+    The purpose of the project is to be a mobile application, so the stylization was developed to screens of max width 420px.   
 </p>
     
 <p>
