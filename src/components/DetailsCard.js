@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import FavoriteBtn from './FavoriteBtn';
 import ShareBtn from './ShareBtn';
 import CheckboxInput from './CheckboxInput';
+import '../styles/DetailsCard.css';
 
 function DetailsCard({ recipe }) {
   const { pathname } = useLocation();
@@ -27,22 +28,32 @@ function DetailsCard({ recipe }) {
         src={ checkPage ? recipe.strMealThumb : recipe.strDrinkThumb }
         alt={ checkPage ? recipe.strMeal : recipe.strDrink }
         data-testid="recipe-photo"
+        className="recipe-detail-image"
       />
 
-      <ShareBtn type={ urlSplit[1] } id={ urlSplit[2] } datatest="share-btn" />
+      <ShareBtn
+        type={ urlSplit[1] }
+        id={ urlSplit[2] }
+        datatest="share-btn"
+        className="share-btn-recipe-detail"
+      />
 
       <FavoriteBtn recipe={ recipe } />
 
-      <h1 data-testid="recipe-title">{ checkPage ? recipe.strMeal : recipe.strDrink }</h1>
+      <h1 data-testid="recipe-title" className="recipe-detail-title">
+        { checkPage ? recipe.strMeal : recipe.strDrink }
+      </h1>
 
-      {
+      {/* {
         checkPage ? <p data-testid="recipe-category">{recipe.strCategory}</p>
           : (
             <p data-testid="recipe-category">
               { `${recipe.strCategory} ${recipe.strAlcoholic}`}
             </p>
           )
-      }
+      } */}
+
+      <h2 className="ingredient-detail-title">Ingredients</h2>
 
       {
         isAtInProgressPage ? (
@@ -55,10 +66,14 @@ function DetailsCard({ recipe }) {
             />
           ))
         ) : (
-          <ul>
+          <ul className="ingredient-list-container-detail">
             {
               amountOfIngredients.map((ingredient, i) => (
-                <li key={ `ing-${i}` } data-testid={ `${i}-ingredient-name-and-measure` }>
+                <li
+                  key={ `ing-${i}` }
+                  data-testid={ `${i}-ingredient-name-and-measure` }
+                  className="item-list-detail"
+                >
                   {ingredient
                   && `${ingredient[1]}${amountOfMeasure[i]
                     ? `: ${amountOfMeasure[i][1]}` : ''}`}
@@ -69,13 +84,19 @@ function DetailsCard({ recipe }) {
         )
       }
 
-      <p data-testid="instructions">{recipe.strInstructions}</p>
+      <h2 className="ingredient-detail-title">Instructions</h2>
+
+      <p data-testid="instructions" className="description-detail">
+        {recipe.strInstructions}
+      </p>
+
+      <h2 className="ingredient-detail-title">Video</h2>
 
       {
         checkPage && (
           <iframe
             title={ recipe.strMeal }
-            width="420"
+            width="100%"
             height="315"
             data-testid="video"
             src={ recipe.strYoutube }
