@@ -29,6 +29,7 @@
 <p> Camila Wolter: https://github.com/camilawolter; </p>
 <p> Davi Ferreira: https://github.com/davifalmeida; </p>
 <p> Rafael Costa: https://github.com/rafaelbercosta; </p>
+<p> Trybe:  https://github.com/tryber; </p>
 
 <br />
 <br />
